@@ -48,6 +48,7 @@ rcsid[] = "$Id: i_unix.c,v 1.5 1997/02/03 22:45:10 b1 Exp $";
 // Timer stuff. Experimental.
 #include <time.h>
 #include <signal.h>
+#include <errno.h>
 
 #include "z_zone.h"
 
