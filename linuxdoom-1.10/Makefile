@@ -6,8 +6,8 @@
 #
 CC=  gcc  # gcc or g++
 
-CFLAGS=-g -Wall -DNORMALUNIX -DLINUX # -DUSEASM 
-LDFLAGS=-L/usr/X11R6/lib
+CFLAGS=-g -Wall -DNORMALUNIX -DLINUX -m32# -DUSEASM
+LDFLAGS=-L/usr/lib/i386-linux-gnu/
 LIBS=-lXext -lX11 -lnsl -lm
 
 # subdirectory for objects
@@ -81,7 +81,7 @@ all:	 $(O)/linuxxdoom
 
 clean:
 	rm -f *.o *~ *.flc
-	rm -f linux/*
+	rm -rf $(O)
 
 $(O)/linuxxdoom:	$(OBJS) $(O)/i_main.o
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(O)/i_main.o \
@@ -89,6 +89,9 @@ $(O)/linuxxdoom:	$(OBJS) $(O)/i_main.o
 
 $(O)/%.o:	%.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+fakex:
+	Xephyr -br -ac -noreset -screen 320x240x8 :2
 
 #############################################################
 #
